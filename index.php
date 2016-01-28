@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<?
+	phpinfo();
+	$welcome_text = "Hello world";
+	print($welcome_text);
+?>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="../css/index.css" />
+        <link rel = "stylesheet" type = "text/css" href = "../css/m.css" />
+        <title>Hello World</title>
+
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+		<script>
+			$(document).bind('mobileinit', function() {
+				$.mobile.changePage.defaults.changeHash = false;
+				$.mobile.hashListeninEnabled = false;
+				$.mobile.pushStateEnabled = false;
+			});
+
+			$( "contactForm").serializeArray();
+		</script>
+
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    </head>
+    <body class = "ui-mobile-viewport">
+       <!-- <div class="app">
+            <h1>Hello PhoneGap</h1>
+            <div id="deviceready" class="blink">
+                <p class="event listening">Connecting to Device</p>
+                <p class="event received">Device is Ready</p>
+            </div>
+        </div> -->
+
+        <div data-role = "page" id = "home" data-theme = "a">
+			<div data-role = "header" data-position = "fixed">
+				<h1>Title</h1>
+			</div>
+			<div data-role = "content">
+				<ul data-role = "listview" data-inset = "true">
+					<li><a href = "search.php">Search</a></li>
+					<li><a href = "#ask">Ask</a></li>
+					<li><a href = "#about">About</a></li>
+					<li><a href = "test.php">Test</a></li>
+				</ul>
+			</div>
+			<div class = "footer" data-role = "footer" data-id = "myfooter" data-position = "fixed" data-theme = "a">
+				<div class = "controls" data-role = "controlgroup" data-type = "horizontal">
+					<a href = "#home" class = "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-home" data-role = "button" data-icon = "home">Home</a>
+					<a href = "search.php" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-search" data-role = "button" data-icon  ="search">Search</a>
+					<a href = "#ask" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-info" data-role = "button" data-icon = "phone">Ask</a>
+					<a href = "/index.php" rel = "external" data-role = "button" data-icon  ="plus">Full site</a>
+				</div>
+			</div>
+		</div>
+
+		<div data-role  ="page" id = "search" data-theme  = "a">
+			<div data-role  ="header" data-position = "fixed">
+				<h1>Title</h1>
+			</div>
+			<div data-role = "content">
+				<h2>Search</h2>
+				<form action = "forms-results.php" method = "post">
+					<fieldset>
+						<input type = "text" value = "" />
+						<div data-role = "fieldcontain">
+							<label for = "select-options" class = "select">Choose an option: </label>
+							<select id = "select-options" name = "select-options">
+								<option value = "option1">Option 1</option>
+								<option value = "option2">Option 2</option>
+								<option value = "option3">Option 3</option>
+							</select>
+						</div>
+						<button type = "submit">Find</button>
+					</fieldset>
+				</form>
+				<p><a href = "#home" data-direction = "reverse">Back</a></p>
+			</div>
+
+			<div class = "footer" data-role = "footer" data-id = "myfooter" data-position = "fixed" data-theme = "a">
+				<div class = "controls" data-role = "controlgroup" data-type = "horizontal">
+					<a href = "#home" class = "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-home" data-role = "button" data-icon = "home">Home</a>
+					<a href = "search.php" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-search" data-role = "button" data-icon = "search">Search</a>
+					<a href = "#ask" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-info" data-role = "button" data-icon = "phone">Ask</a>
+					<a href = "/index.php" rel = "external" data-role = "button" data-icon  ="plus">Full site</a>
+				</div>
+			</div>
+		</div>
+
+		<div data-role = "page" id = "ask" data-theme = "a">
+			<div data-role = "header" data-position = "fixed">
+				<h1>Title</h1>
+			</div>
+
+			<div data-role = "content">
+				<h2>Ask</h2>
+				<p><strong>Email: </strong>123@email.com</p>
+				<p><strong>Phone: </strong>123-4567</p>
+
+				<form id = "contactForm" action = "contact-form.php" method = "get">
+					<fieldset>
+						<div class = "ui-field-contain">
+
+							<label for = "contactform-name">Name: </label>
+							<input type = "text" name = "contactform-name" id = "contactform-name" data-mini = "true">
+							<label for = "contactform-email">Email: </label>
+							<input type = "text" name = "contactform-email" id = "contactform-email" data-mini = "true">
+
+							<label for = "contactform-msg">Message: </label>
+							<textarea name = "contactform-msg" id = "contactform-msg" data-mini = "true"></textarea>
+						</div>
+					</fieldset>
+					<button type = "submit" onclick = "submitContact()">Submit</button>
+				</form>
+				<div id = "contactResponse"></div>
+				<p><a href = "#home" data-direction = "reverse">Back</a></p>
+			</div>
+
+			<div class = "footer" data-role = "footer" data-id = "myfooter" data-position = "fixed" data-theme = "a">
+				<div class = "controls" data-role = "controlgroup" data-type = "horizontal">
+					<a href = "#home" class = "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-home" data-role = "button" data-icon = "home">Home</a>
+					<a href = "search.php" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-search" data-role = "button" data-icon = "search">Search</a>
+					<a href = "#ask" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-info" data-role = "button" data-icon = "phone">Ask</a>
+					<a href = "/index.php" rel = "external" data-role = "button" data-icon  ="plus">Full site</a>
+				</div>
+			</div>
+		</div>
+
+		<div data-role = "page" id = "about" data-theme = "a">
+			<div data-role = "header" data-position = "fixed">
+				<h1>Title</h1>
+			</div>
+			<div data-role = "content">
+				<h2>About</h2>
+				<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.Donec non enim in turpis pulvinar facilisis. Ut felis.</p>
+				<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.Donec non enim in turpis pulvinar facilisis. Ut felis.</p>
+
+				<p><a href = "#home" data-direction = "reverse">Back</a></p>
+			</div>
+			<div class = "footer" data-role = "footer" data-id = "myfooter" data-position = "fixed" data-theme = "a">
+				<div class = "controls" data-role = "controlgroup" data-type = "horizontal">
+					<a href = "#home" class = "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-home" data-role = "button" data-icon = "home">Home</a>
+					<a href = "search.php" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-search" data-role = "button" data-icon = "search">Search</a>
+					<a href = "#ask" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-info" data-role = "button" data-icon = "phone">Ask</a>
+					<a href = "/index.php" rel = "external" data-role = "button" data-icon  ="plus">Full site</a>
+				</div>
+			</div>
+		</div>
+
+		<script type = "text/javascript">
+			function submitContact() {
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						document.getElementById("contactResponse").innerHTML = xmlhttp.responseText;
+					};
+					
+					var name = document.getElementById("contactform-name").value;
+					var email = document.getElementById("contactform-email").value;
+					var msg = document.getElementById("contactform-msg").value;
+
+					xmlhttp.open("GET", "contact-form.php?name=" + name + "&email=" + email + "&msg=" + msg, true);
+					xmlhttp.send();
+					/*xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					xmlhttp.send("name=" + name + "&email=" + email + "&msg=" + msg);*/
+				}
+			}
+		</script>
+
+    </body>
+</html>
+
