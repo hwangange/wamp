@@ -1,9 +1,5 @@
 
-
 <?php
-
-	//phpinfo();
-
 	$name = $_REQUEST['name'];
 	$email = $_REQUEST['email'];
 	$msg = $_REQUEST['msg'];
