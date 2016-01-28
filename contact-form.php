@@ -6,8 +6,7 @@
 
 	mail("hwangangela99@hotmail.com", "Feedback Form Results",
 		$msg, "From: $email");
-	header( "Location: http://bing.com"); 
-	echo "Name: " + $name;
+	echo "<h1>Name: $name</h1>";
 
 ?>
 
