@@ -1,0 +1,7 @@
+.controls {
+	text-align: center;
+}
+
+.controls * {
+	margin: 0 auto;
+}
