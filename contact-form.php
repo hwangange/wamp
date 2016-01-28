@@ -4,7 +4,7 @@
 
 	//phpinfo();
 
-	/*$name = $_REQUEST['name'];
+	$name = $_REQUEST['name'];
 	$email = $_REQUEST['email'];
 	$msg = $_REQUEST['msg'];
 
@@ -34,7 +34,7 @@
 
 	mail("hwangangela99@hotmail.com", "Feedback Form Results",
 		$msg, "From: $email");
-	header( "Location: http://bing.com"); */
+	header( "Location: http://bing.com"); 
 
 	$name = $_REQUEST['name'];
 	echo "Name: " + $name;
