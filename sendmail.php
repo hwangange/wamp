@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-
-<?
-	phpinfo();
-	$welcome_text = "Hello world";
-	print($welcome_text);
-?>
-
 <html>
-    <head>
+	 <head>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-tap-highlight" content="no" />
@@ -21,40 +13,19 @@
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     </head>
-    
-    <body class = "ui-mobile-viewport">
-   
-		<div data-role  ="page" id = "search" data-theme  = "a">
+	<body class = "ui-mobile-viewport">
+		<div data-role = "page" id = "ask" data-theme = "a">
 			<?php require 'header.php';?>
-			
+
 			<div data-role = "content">
-				<h2>Search</h2>
-				<form action = "forms-results.php" method = "post">
-					<fieldset>
-						<input type = "text" value = "" />
-						<div data-role = "fieldcontain">
-							<label for = "select-options" class = "select">Choose an option: </label>
-							<select id = "select-options" name = "select-options">
-								<option value = "option1">Option 1</option>
-								<option value = "option2">Option 2</option>
-								<option value = "option3">Option 3</option>
-							</select>
-						</div>
-						<button type = "submit">Find</button>
-					</fieldset>
-				</form>
+				<h2>Welcome <?php echo $_POST["name"]; ?></h2>
+				<p>Your email is: <?php echo $_POST["email"]; ?></p>
+				<p>Your message is: <?php echo $_POST["message"]; ?></p>
+				<p><?php $welcome = "Welcome!"; echo $welcome; ?></p>
 				<p><a href = "index.php" data-direction = "reverse">Back</a></p>
 			</div>
 
 			<?php require 'footer.php';?>
-		</div>
 
-
-      <!--  <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>-->
-    </body>
+	</body>
 </html>
-

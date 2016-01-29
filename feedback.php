@@ -1,11 +1,5 @@
 <!DOCTYPE html>
 
-<?
-	phpinfo();
-	$welcome_text = "Hello world";
-	print($welcome_text);
-?>
-
 <html>
     <head>
         <meta charset="utf-8" />
@@ -23,38 +17,30 @@
     </head>
     
     <body class = "ui-mobile-viewport">
-   
-		<div data-role  ="page" id = "search" data-theme  = "a">
+
+		<div data-role = "page" id = "ask" data-theme = "a">
 			<?php require 'header.php';?>
-			
+
 			<div data-role = "content">
-				<h2>Search</h2>
-				<form action = "forms-results.php" method = "post">
-					<fieldset>
-						<input type = "text" value = "" />
-						<div data-role = "fieldcontain">
-							<label for = "select-options" class = "select">Choose an option: </label>
-							<select id = "select-options" name = "select-options">
-								<option value = "option1">Option 1</option>
-								<option value = "option2">Option 2</option>
-								<option value = "option3">Option 3</option>
-							</select>
-						</div>
-						<button type = "submit">Find</button>
-					</fieldset>
+				<h2>Ask</h2>
+				<p><strong>Email: </strong>123@email.com</p>
+				<p><strong>Phone: </strong>123-4567</p>
+
+				<form method="post" action = "sendmail.php">
+				  Name: <input name = "name" type = "text" /> 
+				  Email: <input name="email" type="text" />
+				  Message:<br />
+				  <textarea name="message" rows="25" cols="40">
+				  </textarea><br />
+				  <button type="submit">Submit</button>
 				</form>
+
 				<p><a href = "index.php" data-direction = "reverse">Back</a></p>
 			</div>
 
 			<?php require 'footer.php';?>
 		</div>
 
-
-      <!--  <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>-->
     </body>
 </html>
 
