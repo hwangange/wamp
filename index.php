@@ -25,6 +25,21 @@
 		</script>-->
 
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		<script>
+			$.ajax({
+					url: "http://query.yahooapis.com/v1/public/yql",
+					jsonp: "callback",
+					dataType: "jsonp",
+					data: {
+						q:"select title,abstract,url from local.search where zip=\"77479\" and query=\"food\"",
+						format: "json"
+					},
+
+					success: function(response) {
+					console.log(response);
+				}
+			});
+		</script>	
     </head>
     <body class = "ui-mobile-viewport">
        <!-- <div class="app">
@@ -43,13 +58,23 @@
 					<li><a href = "feedback.php">Ask</a></li>
 					<li><a href = "#about">About</a></li>
 					<li><a href = "test.php">Test</a></li>
+					<li><a href = "read.php">Read</a></li>
+					<li><a href = "#cats">Blank</a></li>
+					<li><a href = "sqlite.php">SQLite</a></li>
 				</ul>
 			</div>
 			<?php require 'footer.php';?>
 		</div>
 
+		<div data-role = "page" id = "cats" data-theme = "a">
+			<?php require 'header.php'; ?>
+			<div data-role = "content">
+				<h2>Title</h2>
+				
+			</div>	
+			<?php require 'footer.php'; ?>
+		</div>
 		
-
 		<div data-role = "page" id = "about" data-theme = "a">
 			<?php require 'header.php';?>
 			
