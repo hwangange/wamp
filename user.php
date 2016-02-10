@@ -10,24 +10,14 @@
 				$username =  $_POST["username"];
 				$password = $_POST["password"];
 
-				$sql = "SELECT * FROM login WHERE email == $email";
-				$result = $db->query($sql);
-				if($result) {
-					while($row = $result->fetchArray(SQLITE3_ASSOC)) {
-							echo $row[username] . " " . $row[email];
-					} 
-
 
 				$sql = "INSERT INTO login(username, email, password) VALUES( '" . $username . "', '" . $email . "', '" . $password . "')";
 				$result = $db-> query($sql);
 
-				
 				if($result) {
-					echo "New record created successfully.";
-				} else {
-					echo "Error!";
+					$_SESSION['sess_user'] = $username;
+					header("Location: index.php");
 				}
-
 				unset($db);
 			?>
 			<?php require 'footer.php'; ?>

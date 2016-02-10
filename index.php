@@ -1,3 +1,11 @@
+<?php
+	session_start();
+	if(!isset($_SESSION['login_user'])) {
+		header("Location: login.php");
+		exit;
+	}
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -41,6 +49,7 @@
 			});
 		</script>	
     </head>
+   
     <body class = "ui-mobile-viewport">
        <!-- <div class="app">
             <h1>Hello PhoneGap</h1>
@@ -53,6 +62,7 @@
         <div data-role = "page" id = "home" data-theme = "a">
 			<?php require 'header.php';?>
 			<div data-role = "content">
+				<h2>Welcome <i><?php echo $_SESSION['login_user']; ?></i></h2>
 				<ul data-role = "listview" data-inset = "true">
 					<li><a href = "search.php">Search</a></li>
 					<li><a href = "feedback.php">Ask</a></li>
@@ -60,8 +70,10 @@
 					<li><a href = "test.php">Test</a></li>
 					<li><a href = "read.php">Read</a></li>
 					<li><a href = "#cats">Blank</a></li>
-					<li><a href = "sqlite.php">SQLite</a></li>
+					<li><a href = "login.php">Login</a></li>
+					<li><a href = "register.php">Register</a></li>
 				</ul>
+				<a href = "logout.php"><p>Log Out</p></a>
 			</div>
 			<?php require 'footer.php';?>
 		</div>
