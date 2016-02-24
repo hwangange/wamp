@@ -63,28 +63,27 @@
 			<?php require 'header.php';?>
 			<div data-role = "content">
 				<h2>Welcome <i><?php echo $_SESSION['login_user']; ?></i></h2>
-				<ul data-role = "listview" data-inset = "true">
+				<div class = "ui-grid-a">
+					<div class = "ui-block-a"><div class = "ui-bar ui-bar-a category center"><p class = "vcenter">Trending</p></div></div>
+					<div class = "ui-block-b"><div class = "ui-bar ui-bar-a category center"><p class = "vcenter">U.S.</p></div></div>
+					<div class = "ui-block-a"><div class = "ui-bar ui-bar-a category center"><p class = "vcenter">World</p></div></div>
+					<div class = "ui-block-b"><div class = "ui-bar ui-bar-a category center"><p class = "vcenter">Business</p></div></div>
+					<div class = "ui-block-a"><div class = "ui-bar ui-bar-a category center"><p class = "vcenter">Tech</p></div></div>
+					<div class = "ui-block-b"><div class = "ui-bar ui-bar-a category center"><p class = "vcenter">Health</p></div></div>
+					<div class = "ui-block-a"><div class = "ui-bar ui-bar-a category center"><p class = "vcenter">Entertainment</p></div></div>
+					<div class = "ui-block-b"><div class = "ui-bar ui-bar-a category center"><p class = "vcenter">Opinion</p></div></div>
+					<div class = "ui-block-a"><div class = "ui-bar ui-bar-a category center"><p class = "vcenter">Science</p></div></div>
+				</div>
+				<!--<ul data-role = "listview" data-inset = "true">
 					<li><a href = "search.php">Search</a></li>
 					<li><a href = "feedback.php">Ask</a></li>
 					<li><a href = "#about">About</a></li>
 					<li><a href = "test.php">Test</a></li>
 					<li><a href = "read.php">Read</a></li>
-					<li><a href = "#cats">Blank</a></li>
-					<li><a href = "login.php">Login</a></li>
-					<li><a href = "register.php">Register</a></li>
-				</ul>
+				</ul> -->
 				<a href = "logout.php"><p>Log Out</p></a>
 			</div>
 			<?php require 'footer.php';?>
-		</div>
-
-		<div data-role = "page" id = "cats" data-theme = "a">
-			<?php require 'header.php'; ?>
-			<div data-role = "content">
-				<h2>Title</h2>
-				
-			</div>	
-			<?php require 'footer.php'; ?>
 		</div>
 		
 		<div data-role = "page" id = "about" data-theme = "a">

@@ -5,3 +5,33 @@
 .controls * {
 	margin: 0 auto;
 }
+
+.center {
+  display: table;
+  vertical-align: middle;
+  align-items: center;
+  -webkit-align-items: center;
+  overflow: hidden;
+  text-align: center;
+}
+
+.category {
+	display: flex;
+	align-items: center;
+	height: 35vw;
+}
+
+.category p {
+	position: relative;
+	text-align: center;
+}
+
+.ui-bar {
+	margin: 2%;
+}
+
+.vcenter {
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+}

@@ -42,14 +42,16 @@
 						die('Sorry, the username and password do not match.');
 					} else {
 						$_SESSION['login_user'] = $username;
-						header('Location: profile.php');;
+						header('Location: index.php');
 					}
 
 					unset($db);
 			?>
 				
 			</div>
-			<?php require 'footer.php'; ?>
+			<div class = "footer" data-role = "footer" data-id = "myfooter" data-position = "fixed" data-theme = "a">
+				<div class = "controls" data-role = "controlgroup" data-type = "horizontal"></div>
+			</div>
 			<?php 
 		}
 
@@ -64,6 +66,7 @@
 					Password: <input type = "password" id = "password" name = "password" />
 					<button type = "submit" name = "submit" id = "loginBtn" style = "width: 50%; margin: auto">Login</button>
 				</fieldset>
+				<p><?php echo "Hello!"; ?></p>
 				<p style = "text-align: center">New? <a href = "register.php">Register</a> to create a new account.</p>
 			</form>
 		<?php
@@ -71,7 +74,9 @@
 		}
 		?>
 
-			<?php require 'footer.php'; ?>
+			<div class = "footer" data-role = "footer" data-id = "myfooter" data-position = "fixed" data-theme = "a">
+				<div class = "controls" data-role = "controlgroup" data-type = "horizontal"></div>
+			</div>
 		</div>
 	</div>
 </body>

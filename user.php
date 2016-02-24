@@ -1,3 +1,11 @@
+<?php 
+	session_start();
+	if(!isset($_SESSION['login_user'])) {
+		header("Location: login.php");
+		exit;
+	}
+?>
+
 
 <?php require 'head.php'; ?>
 <body class = "ui-mobile-viewport">

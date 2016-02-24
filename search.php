@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 
 <?
-	phpinfo();
-	$welcome_text = "Hello world";
-	print($welcome_text);
+	session_start();
+    if(!isset($_SESSION['login_user'])) {
+        header("Location: login.php");
+        exit;
+    }
 ?>
 
 <html>
