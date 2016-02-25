@@ -8,7 +8,7 @@
 		<?php require 'header.php'; ?>
 		<div data-role = "content">
 			<?php
-				$db = new SQLite3('../logindb.sq3');
+				$db = new SQLite3('logindb.sq3');
 				if(isset($_POST['submit'])) {
 					if(!$_POST['username'] | !$_POST['password']) {
 						die('Please complete the entire form.');
@@ -26,7 +26,7 @@
 					$result = $check->fetchArray();
 					echo var_dump($result); */
 
-					//$db = new SQLite3('../logindb.sq3');
+					//$db = new SQLite3('logindb.sq3');
 					$username =  $_POST["username"];
 
 					$_POST['password'] = md5($_POST['password']);
