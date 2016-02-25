@@ -5,7 +5,7 @@
 		<?php require 'header.php'; ?>
 		<div data-role = "content">
 			<?php
-				$db = new SQLite3('../logindb.sq3');
+				$db = new SQLite3('logindb.sq3');
 				if(isset($_POST['submit'])) {
 					if(!$_POST['username'] | !$_POST['password'] | !$_POST['email']) {
 						die('Please complete the entire form.');
