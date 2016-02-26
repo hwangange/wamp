@@ -8,7 +8,13 @@
 		<?php require 'header.php'; ?>
 		<div data-role = "content">
 			<?php
-				$db = new SQLite3('logindb.sq3');
+				$db_host = "localhost";
+				$db_username = "root";
+				$db_pass = "";
+				$db_name = "logindb";
+			
+				$db = mysqli_connect("$db_host","$db_username","$db_pass","$db_name") or die ("could not connect to mysql");
+
 				if(isset($_POST['submit'])) {
 					if(!$_POST['username'] | !$_POST['password']) {
 						die('Please complete the entire form.');
@@ -17,16 +23,6 @@
 						$_POST['username'] = addslashes($_POST['username']);
 					}
 
-				/*	$usercheck = $_POST['username'];
-					$passcheck = $_POST['password'];
-
-
-					$sql = "SELECT * FROM login WHERE username = '".$usercheck."' AND password = '".$passcheck."'";
-					$check = $db->query($sql);
-					$result = $check->fetchArray();
-					echo var_dump($result); */
-
-					//$db = new SQLite3('../logindb.sq3');
 					$username =  $_POST["username"];
 
 					$_POST['password'] = md5($_POST['password']);
@@ -34,11 +30,13 @@
 
 
 
-					$sql = "SELECT COUNT(*) AS '# of matches' FROM login WHERE username ='" . $username . "' AND password = '" . $password . "'";
-					$check = $db->query($sql);
-					$result = $check->fetchArray();
-					echo var_dump($result);
-					if($result[0] == 0) { 
+					$sql = mysqli_query($db, "SELECT * FROM login WHERE username ='$username' AND password = '$password'");
+
+					$row = mysqli_fetch_array($sql, MYSQLI_ASSOC);
+					$active = $row['active'];
+					
+					$existCount = mysqli_num_rows($sql);
+					if($existCount == 0) { 
 						die('Sorry, the username and password do not match.');
 					} else {
 						$_SESSION['login_user'] = $username;
@@ -66,7 +64,6 @@
 					Password: <input type = "password" id = "password" name = "password" />
 					<button type = "submit" name = "submit" id = "loginBtn" style = "width: 50%; margin: auto">Login</button>
 				</fieldset>
-				<p><?php echo "Hello!"; ?></p>
 				<p style = "text-align: center">New? <a href = "register.php">Register</a> to create a new account.</p>
 			</form>
 		<?php

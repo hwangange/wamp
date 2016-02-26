@@ -5,7 +5,16 @@
 		<?php require 'header.php'; ?>
 		<div data-role = "content">
 			<?php
-				$db = new SQLite3('logindb.sq3');
+				$db_host = "localhost";
+				$db_username = "root";
+				$db_pass = "";
+				$db_name = "logindb";
+				
+				$conn = new mysqli($db_host, $db_username, $db_pass, $db_name);
+				if($conn->connect_error) {
+					die("Connection failed" . $conn->connect_error);
+				}
+				  
 				if(isset($_POST['submit'])) {
 					if(!$_POST['username'] | !$_POST['password'] | !$_POST['email']) {
 						die('Please complete the entire form.');
@@ -17,19 +26,17 @@
 					$usercheck = $_POST['username'];
 					$emailcheck = $_POST['email'];
 
-
-					$sql = "SELECT COUNT(*) AS '# of matches' FROM login WHERE username = '".$usercheck."'";
-					$check = $db->query($sql);
-					$result = $check->fetchArray();
-					if($result[0] != 0) { 
-						die('Sorry, the username "'.$_POST['username'].'" is already in use.');
+					$sql = "SELECT * FROM login WHERE username = '$usercheck'";			
+					$existCount = mysqli_num_rows($conn->query($sql));
+					if($existCount != 0) { 
+						die('Sorry, the username '. $usercheck.' is already in use.');
 					}
 
-					$sql = "SELECT COUNT(*) AS '# of matches' FROM login WHERE email = '".$emailcheck."'";
-					$check = $db->query($sql);
-					$result = $check->fetchArray();
-					if($result[0] !=0) {
-						die('Sorry, the email "'.$_POST['email'].'" is already in use.');
+					$sql = "SELECT * FROM login WHERE email = '$emailcheck'";	
+					
+					$existCount = mysqli_num_rows($conn->query($sql));
+					if($existCount !=0) {
+						die('Sorry, the email '. $emailcheck .' is already in use.');
 					}
 
 
@@ -38,12 +45,22 @@
 						$_POST['password'] = addslashes($_POST['password']);
 						$_POST['username'] = addslashes($_POST['username']);
 						$_POST['email'] = addslashes($_POST['email']);
+						$password = $_POST['password'];
+						$username = $_POST['username'];
+						$email = $_POST['email'];
 					}
 
-					$insert = "INSERT INTO login(username, email, password) VALUES('".$_POST['username']."', '".$_POST['email']."', '".$_POST['password']."')";
+					$sql = "INSERT INTO login (username, email, password)
+					VALUES ('$username','$email','$password')";
 
-					$result = $db-> query($insert);
-					unset($db);
+					if ($conn->query($sql) === TRUE) {
+					    echo "New record created successfully";
+					} else {
+					    echo "Error: " . $sql . "<br>" . $conn->error;
+					}
+
+					$conn->close();
+					
 
 			?>
 
@@ -73,7 +90,9 @@
 		}
 		?>
 
-			<?php require 'footer.php'; ?>
+			<div class = "footer" data-role = "footer" data-id = "myfooter" data-position = "fixed" data-theme = "a">
+				<div class = "controls" data-role = "controlgroup" data-type = "horizontal"></div>
+			</div>
 		</div>
 	</div>
 </body>
