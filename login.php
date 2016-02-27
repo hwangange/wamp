@@ -41,6 +41,7 @@
 					} else {
 						$_SESSION['login_user'] = $username;
 						header('Location: index.php');
+						exit;
 					}
 
 					unset($db);

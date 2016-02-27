@@ -22,4 +22,11 @@
 		</script>-->
 
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$( function() {
+					$( "#mainpanel").panel();
+				})
+			});
+		</script>
     </head>

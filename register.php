@@ -85,6 +85,7 @@
 					<button name = "submit" type = "submit" value = "Register" id = "registerBtn" style = "width: 50%; margin: auto">Register</button>
 				</fieldset>
 			</form>
+			<p style = "text-align: center">Back to <a href = "login.php">Login</a></p>
 		<?php
 
 		}

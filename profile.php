@@ -19,6 +19,7 @@
 			</div>
 			<?php require 'footer.php'; ?>
 		</div>
+		<?php require 'panel.php';?>
 	</body>
 </html>
 
