@@ -22,13 +22,13 @@
 
         <div data-role = "page" id = "home" data-theme = "a">
 			<?php require 'header.php';?>
+			<?php require 'panel.php';?>
 			<div data-role = "content">
 				<h2>Welcome <i><?php echo $_SESSION['login_user']; ?></i></h2>
 				<a href = "logout.php"><p>Log Out</p></a>
 			</div>
 			<?php require 'footer.php';?>
 		</div>
-		<?php require 'panel.php';?>
 
     </body>
 </html>

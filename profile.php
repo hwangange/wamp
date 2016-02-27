@@ -12,6 +12,7 @@
 	<body class = "ui-mobile-viewport">
 		<div data-role = "page" id = "profile" data-theme = "a">
 			<?php require 'header.php'; ?>
+			<?php require 'panel.php';?>
 			<div data-role = "content">
 				<b id = "welcome">Welcome : <i><?php echo $_SESSION['login_user'];?></i></b>
 				<br>
@@ -19,7 +20,6 @@
 			</div>
 			<?php require 'footer.php'; ?>
 		</div>
-		<?php require 'panel.php';?>
 	</body>
 </html>
 
