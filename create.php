@@ -14,6 +14,109 @@
 			<?php require 'header.php'; ?>
 			<?php require 'panel.php';?>
 			<div data-role = "content">
+				<?php
+				$db_host = "localhost";
+				$db_username = "root";
+				$db_pass = "";
+				$db_name = "forms";
+				
+				$conn = new mysqli($db_host, $db_username, $db_pass, $db_name);
+				if($conn->connect_error) {
+					die("Connection failed" . $conn->connect_error);
+				}
+				  
+				$criteria = array('name', 'id', 'year', 'teacher', 'date', 'hours', 'description', 'studentSig', 'organization', 'number', 'address', 'contactName', 'contactEmail', 'orgSig', 'parentSig');
+
+				if(isset($_POST['submit'])) {
+					echo "submit is set.";
+					foreach($criteria as $x) {
+						if(!$_POST[$x])
+							die('Please complete the entire form.');
+					}
+
+					if(!get_magic_quotes_gpc()) {
+						foreach($criteria as $x) {
+							$_POST[$x] = addslashes($_POST[$x]);
+							$$x = $_POST[$x];
+						}
+
+						$user =$_SESSION['login_user'];
+
+					}
+
+					$str = "INSERT INTO verify(user, ";
+						foreach($criteria as $x) {
+							if($x !== end($criteria))
+								$str = $str . $x . ", ";
+							else $str = $str . $x . ") VALUES (";
+						}
+
+						$str = $str . "'" . $user . "', ";
+
+						foreach($criteria as $x) {
+							if($x !== end($criteria))
+								$str = $str . "'" . $$x . "', ";
+							else $str = $str . "'" . $$x . "')";
+						}
+
+						$sql = $str;
+
+						/*$sql = "INSERT INTO verify (name, id, year, teacher, date, hours, description, studentSig, organization, number, address, contactName, contactEmail, orgSig, parentSig) VALUES ('$name', '$id', 'year', '')"; */
+
+					if ($conn->query($sql) === TRUE) {
+					    echo "Form has been submitted for verification.";
+					} else {
+					    echo "Error: " . $sql . "<br>" . $conn->error;
+					}
+
+					$conn->close();
+				}
+
+				else if(isset($_POST['save'])) {
+					foreach($criteria as $x) {
+						if(!$_POST[$x])
+							$_POST[$x] = 'empty';
+					}
+
+					if(!get_magic_quotes_gpc()) {
+						foreach($criteria as $x) {
+							$_POST[$x] = addslashes($_POST[$x]);
+							$$x = $_POST[$x];
+						}
+
+						$user =$_SESSION['login_user'];
+
+					}
+
+					$str = "INSERT INTO drafts(user, ";
+						foreach($criteria as $x) {
+							if($x !== end($criteria))
+								$str = $str . $x . ", ";
+							else $str = $str . $x . ") VALUES (";
+						}
+
+						$str = $str . "'" . $user . "', ";
+
+						foreach($criteria as $x) {
+							if($x !== end($criteria))
+								$str = $str . "'" . $$x . "', ";
+							else $str = $str . "'" . $$x . "')";
+						}
+
+						/*$sql = "INSERT INTO verify (name, id, year, teacher, date, hours, description, studentSig, organization, number, address, contactName, contactEmail, orgSig, parentSig) VALUES ('$name', '$id', 'year', '')"; */
+
+						$sql = $str;
+					if ($conn->query($sql) === TRUE) {
+					    echo "Form saved to drafts.";
+					} else {
+					    echo "Error: " . $sql . "<br>" . $conn->error;
+					}
+
+					$conn->close();
+				}
+
+		else {
+			?>
 				<b>User: <i><?php echo $_SESSION['login_user'];?></i></b>
 				<br>
 				<form action - "<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method = "post">
@@ -45,12 +148,15 @@
 						Signature and Date: <input type = "text" id = "orgSig" name = "orgSig" />
 						Signature of Parent/Guardian: <input type = "text" id = "parentSig" name = "parentSig" />
 						<div style = "display: flex">
-							<button type = "submit" id = "submitBtn" style = "width: 40%; margin: auto">Submit</button>
-							<button type = "save" id = "saveBtn" style = "width: 40%; margin: auto">Save Draft</button>
+							<button type = "submit" name = "submit" id = "submitBtn" style = "width: 40%; margin: auto">Submit</button>
+							<button type = "save" name = "save" id = "saveBtn" style = "width: 40%; margin: auto">Save Draft</button>
 						</div>
 					</fieldset>
 				</form>
-			</div>
+			<?php 
+				}
+				?>
+			
 			<?php require 'footer.php'; ?>
 		</div>
 	</body>
